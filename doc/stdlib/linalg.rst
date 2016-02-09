@@ -170,7 +170,11 @@ Linear algebra functions in Julia are largely implemented by calling functions f
 
    .. Docstring generated from Julia source
 
-   Compute the LDLt factorization of ``A``\ , reusing the symbolic factorization ``F``\ .
+   Compute the :math:`LDL'` factorization of ``A``\ , reusing the symbolic factorization ``F``\ .
+
+   ** Note **
+
+   The computation on a sparse matrix uses the the CHOLMOD library from SuiteSparse. CHOLMOD only supports doubles or complex doubles, so input matrices not of element type will be converted to ``SparseMatrixCSC{Float64}`` or ``SparseMatrixCSC{Complex128}`` as appropriate.
 
 .. function:: cholfact!(A::StridedMatrix, uplo::Symbol, Val{false}) -> Cholesky
 
