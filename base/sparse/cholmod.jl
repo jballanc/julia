@@ -1248,7 +1248,14 @@ end
         Hermitian{Complex{<:Real},SparseMatrixCSC{Complex{<:Real},SuiteSparse_long}}};
         shift = 0.0) -> CHOLMOD.Factor
 
-Compute the LDLt factorization of `A`, reusing the symbolic factorization `F`.
+Compute the ``LDL'`` factorization of `A`, reusing the symbolic factorization `F`.
+
+** Note **
+
+The computation on a sparse matrix uses the the CHOLMOD library from
+SuiteSparse. CHOLMOD only supports doubles or complex doubles, so input
+matrices not of element type will be converted to `SparseMatrixCSC{Float64}` or
+`SparseMatrixCSC{Complex128}` as appropriate.
 """
 cholfact!{T<:Real}(F::Factor, A::Union{SparseMatrixCSC{T},
         SparseMatrixCSC{Complex{T}},
